@@ -16,7 +16,15 @@ export const PostList = () => {
   const List = postList.map((post) => {
     return (
       <div key={post._id}>
-        <div>{post.description}</div>
+        <h2>Title: {post.title}</h2>
+        <h3>Poster: {post.author.username}</h3>
+        <div>
+          <p>Description: {post.description}</p>
+          <p>Location:{post.location}</p>
+          <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
+          <p>Price: {post.price}</p>
+          <button>Delete (WORK IN PROGRESS)</button>
+        </div>
       </div>
     );
   });

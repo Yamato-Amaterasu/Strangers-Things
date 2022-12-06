@@ -3,6 +3,7 @@ import "./App.css";
 import Register from "./components/Register";
 import { fetchMe } from "./api/auth";
 import { PostList } from "./components/Posts";
+import { Navbar } from "./components/NavBar";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -23,9 +24,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{user?.username}</h1>
+      <Navbar />
+      {/* <h1>{user?.username}</h1> */}
       <PostList />
-      <Register setToken={setToken} />
+      {/* <Register setToken={setToken} /> */}
     </div>
   );
 }
