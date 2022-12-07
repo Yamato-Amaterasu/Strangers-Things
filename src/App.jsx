@@ -5,6 +5,7 @@ import { fetchMe } from "./api/auth";
 import { PostList } from "./components/Posts";
 import { Navbar } from "./components/NavBar";
 import { LoginForm } from "./components/Login";
+import { PostForm } from "./components/PostForm";
 import "./App.css";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PostList />} />
         <Route path="/Login" element={<LoginForm setToken={setToken} />} />
+        <Route path="/Postform" element={<PostForm />} />
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
     </div>

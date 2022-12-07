@@ -1,4 +1,3 @@
-import React from "react";
 const cohort = "2211-FTB-ET-WEB-FT";
 
 export const FetchPosts = async () => {
