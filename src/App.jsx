@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import { fetchMe } from "./api/auth";
 import { PostList } from "./components/Posts";
 import { Navbar } from "./components/NavBar";
+import { LoginForm } from "./components/Login";
+import "./App.css";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
 
   // console.log(token);
+  // FIX BUG WITH TOKEN BEING UNIDENTIFIED AFTER MULTIPLE REGISTRATION \\
   useEffect(() => {
     const getMe = async () => {
       const data = await fetchMe(token);
@@ -24,10 +27,13 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      {/* <h1>{user?.username}</h1> */}
-      <PostList />
-      {/* <Register setToken={setToken} /> */}
+      <Navbar setToken={setToken} user={user} />
+
+      <Routes>
+        <Route path="/" element={<PostList />} />
+        <Route path="/Login" element={<LoginForm setToken={setToken} />} />
+        <Route path="/Register" element={<Register setToken={setToken} />} />
+      </Routes>
     </div>
   );
 }

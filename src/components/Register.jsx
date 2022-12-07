@@ -21,11 +21,12 @@ const Register = ({ setToken }) => {
           }
         }}
       >
+        <h1> PLEASE REGISTER HERE PLEASE</h1>
         <label htmlFor="username">Username: </label>
         <input
           value={username}
           type="text"
-          placeholder="usrname"
+          placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
         ></input>
         <label htmlFor="password">Password: </label>
@@ -35,7 +36,7 @@ const Register = ({ setToken }) => {
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit">Register</button>
       </form>
     </div>
   );
