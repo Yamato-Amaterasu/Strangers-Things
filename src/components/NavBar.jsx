@@ -31,7 +31,7 @@ export const Navbar = ({ setToken, user }) => {
       return (
         <Link to="Profile" id="profile">
           {" "}
-          {user.username}{" "}
+          {localStorage.getItem("user")}{" "}
         </Link>
       );
     } else {

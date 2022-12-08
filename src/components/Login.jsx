@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { LoginAPI } from "../api/LoginAPI";
+import { fetchMe } from "../api/auth";
 
-export const LoginForm = ({ setToken }) => {
+export const LoginForm = ({ setToken, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,8 +11,11 @@ export const LoginForm = ({ setToken }) => {
       onSubmit={async (e) => {
         e.preventDefault();
         const token = await LoginAPI(username, password);
+        const user = await fetchMe(token);
+        setUser(user.username);
         setToken(token);
         localStorage.setItem("token", token);
+        localStorage.setItem("user", user.username);
       }}
     >
       <h1> ENTER LOGIN HERE PLEASE</h1>

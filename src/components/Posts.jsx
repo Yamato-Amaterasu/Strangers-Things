@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FetchPosts } from "../api/postsAPI";
+import { DeleteButton } from "../api/Delete";
 
 export const PostList = ({ token }) => {
   const [postList, setPostList] = useState([]);
@@ -52,7 +53,7 @@ export const PostList = ({ token }) => {
           <p>Location:{post.location}</p>
           <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
           <p>Price: {post.price}</p>
-          {/* <DeleteButton /> */}
+          <DeleteButton post={post} />
         </div>
       </form>
     );

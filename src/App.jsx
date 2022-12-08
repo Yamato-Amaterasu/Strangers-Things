@@ -14,17 +14,17 @@ function App() {
 
   // console.log(token);
   // FIX BUG WITH TOKEN BEING UNIDENTIFIED AFTER MULTIPLE REGISTRATION \\
-  useEffect(() => {
-    const getMe = async () => {
-      const data = await fetchMe(token);
-      setUser(data);
-      // console.log(data);
-      console.log("user", user);
-    };
-    if (token) {
-      getMe();
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   const getMe = async () => {
+  //     const data = await fetchMe(token);
+  //     setUser(data);
+  //     // console.log(data);
+  //     console.log("user", user);
+  //   };
+  //   if (token) {
+  //     getMe();
+  //   }
+  // }, [token]);
 
   return (
     <div className="App">
@@ -32,7 +32,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<PostList token={token} />} />
-        <Route path="/Login" element={<LoginForm setToken={setToken} />} />
+        <Route
+          path="/Login"
+          element={<LoginForm setToken={setToken} setUser={setUser} />}
+        />
         <Route path="/Postform" element={<PostForm token={token} />} />
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
