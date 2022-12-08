@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { CreatePosts } from "../api/CreatePosts";
 
-export const PostForm = () => {
+export const PostForm = ({ token }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -8,7 +9,16 @@ export const PostForm = () => {
   const [delivery, setDelivery] = useState("");
 
   return (
-    <form className="postForm">
+    <form
+      className="postForm"
+      onSubmit={async () => {
+        if (token) {
+          CreatePosts({ token, title, description, location, price, delivery });
+        } else {
+          alert("Please Login or Register");
+        }
+      }}
+    >
       <label>Title:</label>
       <input
         value={title}

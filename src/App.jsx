@@ -31,9 +31,9 @@ function App() {
       <Navbar setToken={setToken} user={user} />
 
       <Routes>
-        <Route path="/" element={<PostList />} />
+        <Route path="/" element={<PostList token={token} />} />
         <Route path="/Login" element={<LoginForm setToken={setToken} />} />
-        <Route path="/Postform" element={<PostForm />} />
+        <Route path="/Postform" element={<PostForm token={token} />} />
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
     </div>
