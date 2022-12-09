@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CreatePosts } from "../api/CreatePostsAPI";
+import { Edit } from "../api/EditPostsAPI";
 
-export const PostForm = ({ token }) => {
+export const EditPost = ({ id }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -12,8 +12,8 @@ export const PostForm = ({ token }) => {
     <form
       className="postForm"
       onSubmit={async () => {
-        if (token) {
-          CreatePosts({ token, title, description, location, price, delivery });
+        if (localStorage.getItem("token")) {
+          Edit({ id, title, description, location, price, delivery });
         } else {
           alert("Please Login or Register");
         }
@@ -55,7 +55,7 @@ export const PostForm = ({ token }) => {
         placeholder="Enter Yes or No"
       ></input>
 
-      <button type="submit">Submit</button>
+      <button type="submit">Submit Changes</button>
     </form>
   );
 };

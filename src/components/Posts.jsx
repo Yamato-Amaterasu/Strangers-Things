@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FetchPosts } from "../api/postsAPI";
-import { DeleteButton } from "../api/Delete";
+import { DeleteButton, EditButton } from "./Delete&edit";
 
 export const PostList = ({ token }) => {
   const [postList, setPostList] = useState([]);
@@ -8,6 +9,7 @@ export const PostList = ({ token }) => {
   const [newPosts, setNewPosts] = useState([]);
   const [renderPosts, setRenderposts] = useState([]);
   const [searching, setSearching] = useState("");
+  const [postid, setPostid] = useState("");
 
   const DeletePost = async ({ token }, idToDelete) => {
     const cohort = "2211-FTB-ET-WEB-FT";
@@ -64,12 +66,7 @@ export const PostList = ({ token }) => {
 
   const NewList = renderPosts.map((post) => {
     return (
-      <form
-        key={post._id}
-        onSubmit={() => {
-          DeletePost({ token }, post._id);
-        }}
-      >
+      <div key={post._id}>
         <h2>Title: {post.title}</h2>
         <h3>Poster: {post.author.username}</h3>
         <div>
@@ -77,20 +74,26 @@ export const PostList = ({ token }) => {
           <p>Location:{post.location}</p>
           <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
           <p>Price: {post.price}</p>
-          <DeleteButton post={post} />
+          <form>
+            <link to="/EditPost">
+              <EditButton post={post} />
+            </link>
+            <form
+              onSubmit={() => {
+                DeletePost({ token }, post._id);
+              }}
+            >
+              <DeleteButton post={post} />
+            </form>
+          </form>
         </div>
-      </form>
+      </div>
     );
   });
 
   const List = postList.map((post) => {
     return (
-      <form
-        key={post._id}
-        onSubmit={() => {
-          DeletePost({ token }, post._id);
-        }}
-      >
+      <div key={post._id}>
         <h2>Title: {post.title}</h2>
         <h3>Poster: {post.author.username}</h3>
         <div>
@@ -98,9 +101,20 @@ export const PostList = ({ token }) => {
           <p>Location:{post.location}</p>
           <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
           <p>Price: {post.price}</p>
-          <DeleteButton post={post} />
+          <form>
+            <a href="/EditPost">
+              <EditButton post={post} />
+            </a>
+          </form>
+          <form
+            onSubmit={(e) => {
+              DeletePost({ token }, post._id);
+            }}
+          >
+            <DeleteButton post={post} />
+          </form>
         </div>
-      </form>
+      </div>
     );
   });
 

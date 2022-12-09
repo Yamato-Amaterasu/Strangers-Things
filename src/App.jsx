@@ -6,6 +6,7 @@ import { PostList } from "./components/Posts";
 import { Navbar } from "./components/NavBar";
 import { LoginForm } from "./components/Login";
 import { PostForm } from "./components/PostForm";
+import { EditPost } from "./components/EditPost";
 import "./App.css";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           element={<LoginForm setToken={setToken} setUser={setUser} />}
         />
         <Route path="/Postform" element={<PostForm token={token} />} />
+        <Route path="/EditPost" element={<EditPost token={token} />} />
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
     </div>
