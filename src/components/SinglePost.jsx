@@ -1,6 +1,7 @@
 import React from "react";
 import { EditButton } from "./Delete&edit";
 import { DeleteButton } from "../api/Delete";
+import { MessageForm } from "./MessageForm";
 
 export const SinglePost = ({ selectedPost, setSelectedPost }) => {
   return (
@@ -12,6 +13,9 @@ export const SinglePost = ({ selectedPost, setSelectedPost }) => {
         <p>Location:{selectedPost.location}</p>
         <p>Will Deliver: (WORK IN PROGRESS){selectedPost.willDeliver}</p>
         <p>Price: {selectedPost.price}</p>
+        {selectedPost.messages.map((message) => {
+          return <p>message: {message}</p>;
+        })}
         <form
           onClick={() => {
             localStorage.setItem("PostToBeEdited", selectedPost._id);
@@ -28,6 +32,7 @@ export const SinglePost = ({ selectedPost, setSelectedPost }) => {
         >
           <DeleteButton post={selectedPost} />
         </form>
+        <MessageForm selectedPost={selectedPost} />
         <button
           onClick={() => {
             setSelectedPost([]);
