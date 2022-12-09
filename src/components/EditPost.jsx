@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { Edit } from "../api/EditPostsAPI";
 
-export const EditPost = ({ id }) => {
+export const EditPost = ({ setPostid, postid }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [delivery, setDelivery] = useState("");
+  const postId = localStorage.getItem("PostToBeEdited");
 
   return (
     <form
       className="postForm"
-      onSubmit={async () => {
+      onSubmit={async (e) => {
+        e.preventDefault();
         if (localStorage.getItem("token")) {
-          Edit({ id, title, description, location, price, delivery });
+          await Edit(postId, { title, description, location, price, delivery });
+          localStorage.removeItem("PostToBeEdited");
         } else {
           alert("Please Login or Register");
         }

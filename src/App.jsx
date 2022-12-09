@@ -33,13 +33,21 @@ function App() {
       <Navbar setToken={setToken} user={user} />
 
       <Routes>
-        <Route path="/" element={<PostList token={token} />} />
+        <Route
+          path="/"
+          element={
+            <PostList token={token} postid={postid} setpostid={setPostid} />
+          }
+        />
         <Route
           path="/Login"
           element={<LoginForm setToken={setToken} setUser={setUser} />}
         />
         <Route path="/Postform" element={<PostForm token={token} />} />
-        <Route path="/EditPost" element={<EditPost token={token} />} />
+        <Route
+          path="/EditPost"
+          element={<EditPost setpostid={setPostid} postid={postid} />}
+        />
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
     </div>

@@ -1,13 +1,9 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 
-export const Edit = async ({
+export const Edit = async (
   id,
-  title,
-  description,
-  price,
-  location,
-  willDeliver,
-}) => {
+  { title, description, price, location, willDeliver }
+) => {
   try {
     const response = await fetch(
       `http://strangers-things.herokuapp.com/api/${cohort}/posts/${id}`,

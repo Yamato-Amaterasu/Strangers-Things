@@ -73,10 +73,15 @@ export const PostList = ({ token, postid, setPostid }) => {
           <p>Location:{post.location}</p>
           <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
           <p>Price: {post.price}</p>
-
-          <a href="/EditPost">
-            <EditButton post={post} />
-          </a>
+          <form
+            onClick={() => {
+              localStorage.setItem("PostToBeEdited", post._id);
+            }}
+          >
+            <a href="/EditPost">
+              <EditButton post={post} />
+            </a>
+          </form>
           <form
             onSubmit={() => {
               DeletePost({ token }, post._id);
@@ -99,13 +104,17 @@ export const PostList = ({ token, postid, setPostid }) => {
           <p>Location:{post.location}</p>
           <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
           <p>Price: {post.price}</p>
-          <form>
+          <form
+            onClick={() => {
+              localStorage.setItem("PostToBeEdited", post._id);
+            }}
+          >
             <a href="/EditPost">
               <EditButton post={post} />
             </a>
           </form>
           <form
-            onSubmit={(e) => {
+            onSubmit={() => {
               DeletePost({ token }, post._id);
             }}
           >
