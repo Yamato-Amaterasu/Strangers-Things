@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { FetchPosts } from "../api/postsAPI";
 import { DeleteButton, EditButton } from "./Delete&edit";
 
-export const PostList = ({ token }) => {
+export const PostList = ({ token, postid, setPostid }) => {
   const [postList, setPostList] = useState([]);
   const [search, setSearch] = useState("");
   const [newPosts, setNewPosts] = useState([]);
   const [renderPosts, setRenderposts] = useState([]);
   const [searching, setSearching] = useState("");
-  const [postid, setPostid] = useState("");
 
   const DeletePost = async ({ token }, idToDelete) => {
     const cohort = "2211-FTB-ET-WEB-FT";
@@ -74,17 +73,16 @@ export const PostList = ({ token }) => {
           <p>Location:{post.location}</p>
           <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
           <p>Price: {post.price}</p>
-          <form>
-            <link to="/EditPost">
-              <EditButton post={post} />
-            </link>
-            <form
-              onSubmit={() => {
-                DeletePost({ token }, post._id);
-              }}
-            >
-              <DeleteButton post={post} />
-            </form>
+
+          <a href="/EditPost">
+            <EditButton post={post} />
+          </a>
+          <form
+            onSubmit={() => {
+              DeletePost({ token }, post._id);
+            }}
+          >
+            <DeleteButton post={post} />
           </form>
         </div>
       </div>
