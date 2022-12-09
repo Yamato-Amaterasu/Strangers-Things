@@ -12,7 +12,6 @@ import "./App.css";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
-  const [selectedPost, setSelectedPost] = useState([]);
 
   // console.log(token);
   // FIX BUG WITH TOKEN BEING UNIDENTIFIED AFTER MULTIPLE REGISTRATION \\

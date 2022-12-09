@@ -13,9 +13,10 @@ export const SinglePost = ({ selectedPost, setSelectedPost }) => {
         <p>Location:{selectedPost.location}</p>
         <p>Will Deliver: (WORK IN PROGRESS){selectedPost.willDeliver}</p>
         <p>Price: {selectedPost.price}</p>
-        {selectedPost.messages.map((message) => {
-          return <p>message: {message}</p>;
-        })}
+
+        {/* {selectedPost.messages.map((message) => {
+          return <p key={message._id}>message: {message}</p>;
+        })} */}
         <form
           onClick={() => {
             localStorage.setItem("PostToBeEdited", selectedPost._id);

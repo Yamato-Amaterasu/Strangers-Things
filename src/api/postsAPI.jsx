@@ -3,8 +3,16 @@ const cohort = "2211-FTB-ET-WEB-FT";
 export const FetchPosts = async () => {
   try {
     const response = await fetch(
-      `https://strangers-things.herokuapp.com/api/${cohort}/posts`
+      `https://strangers-things.herokuapp.com/api/${cohort}/posts`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")} `,
+        },
+      }
     );
+
     const result = await response.json();
 
     console.log(result.data.posts);
