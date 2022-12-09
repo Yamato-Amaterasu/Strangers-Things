@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { FetchPosts } from "../api/postsAPI";
 import { DeleteButton, EditButton } from "./Delete&edit";
+import { SinglePost } from "./SinglePost";
 
-export const PostList = ({ token, postid, setPostid }) => {
+export const PostList = ({ token }) => {
   const [postList, setPostList] = useState([]);
   const [search, setSearch] = useState("");
   const [newPosts, setNewPosts] = useState([]);
   const [renderPosts, setRenderposts] = useState([]);
   const [searching, setSearching] = useState("");
+  const [selectedPost, setSelectedPost] = useState([]);
 
   const DeletePost = async ({ token }, idToDelete) => {
     const cohort = "2211-FTB-ET-WEB-FT";
@@ -89,6 +90,7 @@ export const PostList = ({ token, postid, setPostid }) => {
           >
             <DeleteButton post={post} />
           </form>
+          <button onClick={() => setSelectedPost(post)}>View Messages</button>
         </div>
       </div>
     );
@@ -120,6 +122,7 @@ export const PostList = ({ token, postid, setPostid }) => {
           >
             <DeleteButton post={post} />
           </form>
+          <button onClick={() => setSelectedPost(post)}>View Messages</button>
         </div>
       </div>
     );
@@ -127,25 +130,32 @@ export const PostList = ({ token, postid, setPostid }) => {
 
   return (
     <div>
-      <div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSearching(false);
-            setSearch("");
-          }}
-        >
-          <label>SearchBar:</label>
-          <input
-            value={search}
-            onChange={searchEngine}
-            type="text"
-            placeholder="Search Title Here"
-          ></input>
-          <button type="submit">clear</button>
-        </form>
-        {searching ? NewList : List}
-      </div>
+      {selectedPost._id ? (
+        <SinglePost
+          selectedPost={selectedPost}
+          setSelectedPost={setSelectedPost}
+        />
+      ) : (
+        <div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSearching(false);
+              setSearch("");
+            }}
+          >
+            <label>SearchBar:</label>
+            <input
+              value={search}
+              onChange={searchEngine}
+              type="text"
+              placeholder="Search Title Here"
+            ></input>
+            <button type="submit">clear</button>
+          </form>
+          {searching ? NewList : List}
+        </div>
+      )}
     </div>
   );
 };

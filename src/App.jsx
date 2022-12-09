@@ -12,7 +12,7 @@ import "./App.css";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
-  const [postid, setPostid] = useState("");
+  const [selectedPost, setSelectedPost] = useState([]);
 
   // console.log(token);
   // FIX BUG WITH TOKEN BEING UNIDENTIFIED AFTER MULTIPLE REGISTRATION \\
@@ -33,21 +33,13 @@ function App() {
       <Navbar setToken={setToken} user={user} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PostList token={token} postid={postid} setpostid={setPostid} />
-          }
-        />
+        <Route path="/" element={<PostList token={token} />} />
         <Route
           path="/Login"
           element={<LoginForm setToken={setToken} setUser={setUser} />}
         />
         <Route path="/Postform" element={<PostForm token={token} />} />
-        <Route
-          path="/EditPost"
-          element={<EditPost setpostid={setPostid} postid={postid} />}
-        />
+        <Route path="/EditPost" element={<EditPost />} />
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
     </div>
