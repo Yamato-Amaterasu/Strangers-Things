@@ -7,38 +7,52 @@ import { Navbar } from "./components/NavBar";
 import { LoginForm } from "./components/Login";
 import { PostForm } from "./components/PostForm";
 import { EditPost } from "./components/EditPost";
+import { Profile } from "./components/Profile";
+
 import "./App.css";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
+  const [selectedPost, setSelectedPost] = useState([]);
 
   // console.log(token);
   // FIX BUG WITH TOKEN BEING UNIDENTIFIED AFTER MULTIPLE REGISTRATION \\
-  // useEffect(() => {
-  //   const getMe = async () => {
-  //     const data = await fetchMe(token);
-  //     setUser(data);
-  //     // console.log(data);
-  //     console.log("user", user);
-  //   };
-  //   if (token) {
-  //     getMe();
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    const getMe = async () => {
+      const data = await fetchMe(token);
+      setUser(data);
+      console.log(data);
+      console.log("user", user);
+    };
+    if (token) {
+      getMe();
+    }
+  }, [token]);
 
   return (
     <div className="App">
       <Navbar setToken={setToken} user={user} />
 
       <Routes>
-        <Route path="/" element={<PostList token={token} />} />
+        <Route
+          path="/"
+          element={
+            <PostList
+              token={token}
+              selectedPost={selectedPost}
+              setSelectedPost={setSelectedPost}
+            />
+          }
+        />
         <Route
           path="/Login"
           element={<LoginForm setToken={setToken} setUser={setUser} />}
         />
         <Route path="/Postform" element={<PostForm token={token} />} />
         <Route path="/EditPost" element={<EditPost />} />
+        <Route path="/Profile" element={<Profile user={user} />} />
+
         <Route path="/Register" element={<Register setToken={setToken} />} />
       </Routes>
     </div>

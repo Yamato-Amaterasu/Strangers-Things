@@ -1,31 +1,25 @@
-// const cohort = "2211-FTB-ET-WEB-FT";
-
-// export const DeletePost = async ({
-//   token,
-//   idToDelete,
-//   postList,
-//   setPostList,
-// }) => {
-//   console.log(token);
-//   try {
-//     const response = fetch(
-//       `https://strangers-things.herokuapp.com/api/${cohort}/posts/${idToDelete}`,
-//       {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//       }
-//     );
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 import React from "react";
 
-export const DeleteButton = ({ post }) => {
-  if (localStorage.getItem("user") == post.author.username) {
-    return <button type="submit">Delete</button>;
+export const DeletePost = async (token, idToDelete) => {
+  const cohort = "2211-FTB-ET-WEB-FT";
+
+  try {
+    const response = await fetch(
+      `https://strangers-things.herokuapp.com/api/${cohort}/posts/${idToDelete}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+
+    const newPosts = postList.filter((post) => post.id !== idToDelete);
+    setPostList(newPosts);
+  } catch (error) {
+    console.error(error);
   }
 };

@@ -54,10 +54,7 @@ export const Navbar = ({ setToken, user }) => {
         {" "}
         PostForm{" "}
       </Link>
-      <Link to="Messages" id="Messages">
-        {" "}
-        Messages{" "}
-      </Link>
+
       <RegisterOrProfile />
       <LoginLogout />
     </nav>

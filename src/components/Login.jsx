@@ -12,7 +12,7 @@ export const LoginForm = ({ setToken, setUser }) => {
         e.preventDefault();
         const token = await LoginAPI(username, password);
         const user = await fetchMe(token);
-        setUser(user.username);
+        // setUser(user.username);
         setToken(token);
         localStorage.setItem("token", token);
         localStorage.setItem("user", user.username);

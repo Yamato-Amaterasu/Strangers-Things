@@ -1,39 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { FetchPosts } from "../api/postsAPI";
 import { DeleteButton, EditButton } from "./Delete&edit";
+import { DeletePost } from "../api/Delete";
 import { SinglePost } from "./SinglePost";
 
-export const PostList = ({ token }) => {
+export const PostList = ({ token, selectedPost, setSelectedPost }) => {
   const [postList, setPostList] = useState([]);
   const [search, setSearch] = useState("");
   const [newPosts, setNewPosts] = useState([]);
   const [renderPosts, setRenderposts] = useState([]);
   const [searching, setSearching] = useState("");
-  const [selectedPost, setSelectedPost] = useState([]);
+  // const [selectedPost, setSelectedPost] = useState([]);
 
-  const DeletePost = async ({ token }, idToDelete) => {
-    const cohort = "2211-FTB-ET-WEB-FT";
-
-    try {
-      const response = await fetch(
-        `https://strangers-things.herokuapp.com/api/${cohort}/posts/${idToDelete}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const result = await response.json();
-      console.log(result);
-
-      const newPosts = postList.filter((post) => post.id !== idToDelete);
-      setPostList(newPosts);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   //search bar parts \\
   const searchEngine = (e) => {
     e.preventDefault();
@@ -85,12 +63,12 @@ export const PostList = ({ token }) => {
           </form>
           <form
             onSubmit={() => {
-              DeletePost({ token }, post._id);
+              DeletePost(localStorage.getItem("token"), post._id);
             }}
           >
             <DeleteButton post={post} />
           </form>
-          <button onClick={() => setSelectedPost(post)}>View Messages</button>
+          <button onClick={() => setSelectedPost(post)}>View Post</button>
         </div>
       </div>
     );
@@ -122,7 +100,7 @@ export const PostList = ({ token }) => {
           >
             <DeleteButton post={post} />
           </form>
-          <button onClick={() => setSelectedPost(post)}>View Messages</button>
+          <button onClick={() => setSelectedPost(post)}>View Post</button>
         </div>
       </div>
     );
