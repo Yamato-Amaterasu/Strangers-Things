@@ -2,10 +2,12 @@ import React from "react";
 import { EditButton, DeleteButton } from "./Delete&edit";
 import { DeletePost } from "../api/Delete";
 import { MessageForm } from "./MessageForm";
+import "./SinglePost.css";
 
+////////// this is the view you see when you select view post  \\\\\\\\\\
 export const SinglePost = ({ selectedPost, setSelectedPost }) => {
   return (
-    <div key={selectedPost._id}>
+    <div className="singlePost" key={selectedPost._id}>
       <h2>Title: {selectedPost.title}</h2>
       <h3>Poster: {selectedPost.author.username}</h3>
       <div>

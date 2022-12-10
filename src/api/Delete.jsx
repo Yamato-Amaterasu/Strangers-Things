@@ -1,8 +1,7 @@
-import React from "react";
+const cohort = "2211-FTB-ET-WEB-FT";
 
+////////// you guessed it. it deleted the post from the api(technically no it sets the post to inactive) \\\\\\\\\\
 export const DeletePost = async (token, idToDelete) => {
-  const cohort = "2211-FTB-ET-WEB-FT";
-
   try {
     const response = await fetch(
       `https://strangers-things.herokuapp.com/api/${cohort}/posts/${idToDelete}`,

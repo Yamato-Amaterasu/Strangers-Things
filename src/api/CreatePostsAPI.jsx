@@ -1,5 +1,6 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 
+////////// this is what makes the post through the api  \\\\\\\\\\
 export const CreatePosts = async ({
   token,
   title,

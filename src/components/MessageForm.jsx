@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PostMessage } from "../api/MessageAPI";
 
+////////// this is the little message input thingy that lets you send a message \\\\\\\\\\
 export const MessageForm = ({ selectedPost }) => {
   const [content, setContent] = useState("");
   const id = selectedPost._id;

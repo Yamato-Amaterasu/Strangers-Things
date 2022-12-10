@@ -1,5 +1,6 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 
+////////// this edits the post with the given post id without the need to make a new one \\\\\\\\\\
 export const Edit = async (
   id,
   { title, description, price, location, willDeliver }

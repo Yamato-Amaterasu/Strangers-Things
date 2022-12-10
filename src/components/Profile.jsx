@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { EditButton, DeleteButton } from "./Delete&edit";
 import { DeletePost } from "../api/Delete";
-import { SinglePost } from "./SinglePost";
 
-export const Profile = ({ user, selectedPost, setSelectedPost }) => {
+import "./profile.css";
+
+////////// this is the profile page where all your posts show up active and inactive   \\\\\\\\\\
+export const Profile = ({ user }) => {
   const token = localStorage.getItem("token");
 
   console.log(user);
 
   const List = user.posts.map((post) => {
     return (
-      <div key={post._id}>
+      <div className="postProfile" key={post._id}>
         <h2>Title: {post.title}</h2>
         <h3>Poster: {post.author.username}</h3>
         <div>
@@ -34,11 +36,10 @@ export const Profile = ({ user, selectedPost, setSelectedPost }) => {
           >
             <DeleteButton post={post} />
           </form>
-          <button onClick={() => setSelectedPost(post)}>View Post</button>
         </div>
       </div>
     );
   });
 
-  return <div>{List}</div>;
+  return <div className="allProfilePosts">{List}</div>;
 };

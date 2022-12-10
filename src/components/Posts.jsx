@@ -4,13 +4,15 @@ import { DeleteButton, EditButton } from "./Delete&edit";
 import { DeletePost } from "../api/Delete";
 import { SinglePost } from "./SinglePost";
 
+import "./Posts.css";
+
+////////// this is the big boy of the project. it renders all the posts and determines if you are searching or not and a lot of other things \\\\\\\\\\
 export const PostList = ({ token, selectedPost, setSelectedPost }) => {
   const [postList, setPostList] = useState([]);
   const [search, setSearch] = useState("");
   const [newPosts, setNewPosts] = useState([]);
   const [renderPosts, setRenderposts] = useState([]);
   const [searching, setSearching] = useState("");
-  // const [selectedPost, setSelectedPost] = useState([]);
 
   //search bar parts \\
   const searchEngine = (e) => {
@@ -42,9 +44,10 @@ export const PostList = ({ token, selectedPost, setSelectedPost }) => {
     GetPosts();
   }, []);
 
+  ////////// this renders the new searching list \\\\\\\\\\
   const NewList = renderPosts.map((post) => {
     return (
-      <div key={post._id}>
+      <div className="post" key={post._id}>
         <h2>Title: {post.title}</h2>
         <h3>Poster: {post.author.username}</h3>
         <div>
@@ -68,21 +71,27 @@ export const PostList = ({ token, selectedPost, setSelectedPost }) => {
           >
             <DeleteButton post={post} />
           </form>
-          <button onClick={() => setSelectedPost(post)}>View Post</button>
+          <button className="viewpost" onClick={() => setSelectedPost(post)}>
+            View Post
+          </button>
         </div>
       </div>
     );
   });
+  //////////  \\\\\\\\\\
 
+  ////////// this renders all the posts if you are not searching. i know very inefficient  \\\\\\\\\\
   const List = postList.map((post) => {
     return (
-      <div key={post._id}>
-        <h2>Title: {post.title}</h2>
-        <h3>Poster: {post.author.username}</h3>
+      <div className="post" key={post._id}>
         <div>
-          <p>Description: {post.description}</p>
+          <h2> {post.title}</h2>
+          <h3>User: {post.author.username}</h3>
+          <p> {post.description}</p>
           <p>Location:{post.location}</p>
-          <p>Will Deliver: (WORK IN PROGRESS){post.willDeliver}</p>
+          <p>
+            Will Deliver: (work in progress){post.willDeliver ? true : false}{" "}
+          </p>
           <p>Price: {post.price}</p>
           <form
             onClick={() => {
@@ -100,8 +109,10 @@ export const PostList = ({ token, selectedPost, setSelectedPost }) => {
           >
             <DeleteButton post={post} />
           </form>
-          <button onClick={() => setSelectedPost(post)}>View Post</button>
         </div>
+        <button className="viewpost" onClick={() => setSelectedPost(post)}>
+          View Post
+        </button>
       </div>
     );
   });
@@ -122,16 +133,18 @@ export const PostList = ({ token, selectedPost, setSelectedPost }) => {
               setSearch("");
             }}
           >
-            <label>SearchBar:</label>
+            <label>SearchBar: </label>
             <input
               value={search}
               onChange={searchEngine}
               type="text"
               placeholder="Search Title Here"
             ></input>
-            <button type="submit">clear</button>
+            <button id="clear" type="submit">
+              clear
+            </button>
           </form>
-          {searching ? NewList : List}
+          <div className="allposts">{searching ? NewList : List}</div>
         </div>
       )}
     </div>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CreatePosts } from "../api/CreatePostsAPI";
 
+import "./PostForm.css";
+////////// this is the input form you edit your post with. happy editing! \\\\\\\\\\
 export const PostForm = ({ token }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -11,11 +13,17 @@ export const PostForm = ({ token }) => {
   return (
     <form
       className="postForm"
-      onSubmit={async () => {
+      onSubmit={async (e) => {
         if (token) {
+          e.preventDefault();
           CreatePosts({ token, title, description, location, price, delivery });
+          setTitle("");
+          setDescription("");
+          setLocation("");
+          setPrice("");
+          setDelivery("");
         } else {
-          alert("Please Login or Register");
+          window.alert("Please Login or Register");
         }
       }}
     >

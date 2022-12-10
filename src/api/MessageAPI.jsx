@@ -1,5 +1,6 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 
+////////// this lets you send a message to a post that only the author can see \\\\\\\\\\
 export const PostMessage = async (content, id) => {
   try {
     const response = await fetch(

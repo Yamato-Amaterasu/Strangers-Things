@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+////////// this is the bar used for searching and filters the posts through the search even though it sucks \\\\\\\\\\
 export const SearchBar = ({ postList }) => {
   const [search, setSearch] = useState("");
 

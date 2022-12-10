@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Edit } from "../api/EditPostsAPI";
 
-export const EditPost = ({ setPostid, postid }) => {
+////////// this give you the edit post form so you can edit the post using the button. very handy \\\\\\\\\\
+export const EditPost = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -16,6 +17,11 @@ export const EditPost = ({ setPostid, postid }) => {
         e.preventDefault();
         if (localStorage.getItem("token")) {
           await Edit(postId, { title, description, location, price, delivery });
+          setTitle("");
+          setDescription("");
+          setLocation("");
+          setPrice("");
+          setDelivery("");
           localStorage.removeItem("PostToBeEdited");
         } else {
           alert("Please Login or Register");

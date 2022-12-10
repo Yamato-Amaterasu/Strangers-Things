@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LoginAPI } from "../api/LoginAPI";
 import { fetchMe } from "../api/auth";
 
+////////// this is the login form that lets you put your username and password. very secure \\\\\\\\\\
 export const LoginForm = ({ setToken, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,6 +39,7 @@ export const LoginForm = ({ setToken, setUser }) => {
   );
 };
 
+////////// this logs you out and makes sure your token wont be on the storage anymore \\\\\\\\\\
 export const Logout = (setToken) => {
   localStorage.clear();
   setToken();

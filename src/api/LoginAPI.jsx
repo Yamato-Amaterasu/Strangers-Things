@@ -1,5 +1,6 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 
+////////// this logs you into the website and gives you a token  \\\\\\\\\\
 export const LoginAPI = async (username, password) => {
   try {
     const loginVerify = await fetch(

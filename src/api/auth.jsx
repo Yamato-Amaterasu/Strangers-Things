@@ -1,5 +1,5 @@
 const cohort = "2211-FTB-ET-WEB-FT";
-
+////////// registers the user through the api and gets a token \\\\\\\\\\
 export const registerUser = async (username, password) => {
   try {
     const response = await fetch(
@@ -27,6 +27,8 @@ export const registerUser = async (username, password) => {
     console.log(error);
   }
 };
+
+////////// this gets the user data with all their posts and messages \\\\\\\\\\
 export const fetchMe = async (token) => {
   try {
     const response = await fetch(

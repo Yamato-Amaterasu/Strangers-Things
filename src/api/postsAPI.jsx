@@ -1,5 +1,6 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 
+////////// this gives us all the active posts to work up and render \\\\\\\\\\
 export const FetchPosts = async () => {
   try {
     const response = await fetch(

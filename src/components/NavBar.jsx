@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Logout } from "./Login";
+import "./NavBar.css";
 
+////////// this is the nav bar with all my funky functions that determine what shows up  \\\\\\\\\\
 export const Navbar = ({ setToken, user }) => {
   const LoginLogout = () => {
     if (localStorage.getItem("token")) {
       return (
         <Link
           to="/"
-          id="Logout"
+          id="logout"
           onClick={() => {
             Logout(setToken);
           }}
@@ -18,9 +20,19 @@ export const Navbar = ({ setToken, user }) => {
       );
     } else {
       return (
-        <Link to="Login" id="Login">
+        <Link to="Login" id="login">
           {" "}
           Login{" "}
+        </Link>
+      );
+    }
+  };
+  const Form = () => {
+    if (localStorage.getItem("token")) {
+      return (
+        <Link to="/PostForm" id="postForm">
+          {" "}
+          PostForm{" "}
         </Link>
       );
     }
@@ -36,7 +48,7 @@ export const Navbar = ({ setToken, user }) => {
       );
     } else {
       return (
-        <Link to="Register" id="Register">
+        <Link to="Register" id="register">
           {" "}
           Register{" "}
         </Link>
@@ -45,18 +57,20 @@ export const Navbar = ({ setToken, user }) => {
   };
 
   return (
-    <nav>
-      <Link to="/" id="Home">
-        {" "}
-        Home{" "}
-      </Link>
-      <Link to="/PostForm" id="PostForm">
-        {" "}
-        PostForm{" "}
-      </Link>
+    <div id="navbar">
+      <nav>
+        <Link to="/" id="home">
+          {" "}
+          Home{" "}
+        </Link>
 
-      <RegisterOrProfile />
-      <LoginLogout />
-    </nav>
+        <Form />
+      </nav>
+      <img id="logo" src="Stranger_Things_logo.png" />
+      <nav>
+        <RegisterOrProfile />
+        <LoginLogout />
+      </nav>
+    </div>
   );
 };

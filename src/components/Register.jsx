@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../api/auth";
 
+////////// this is how you sign up for our amazing website \\\\\\\\\\
 const Register = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
