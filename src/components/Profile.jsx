@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import { EditButton, DeleteButton } from "./Delete&edit";
-
 import { DeletePost } from "../api/Delete";
+import { SinglePost } from "./SinglePost";
 
 export const Profile = ({ user, selectedPost, setSelectedPost }) => {
   const token = localStorage.getItem("token");
